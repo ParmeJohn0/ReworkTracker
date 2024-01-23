@@ -20,5 +20,33 @@ namespace ReworkTracker
         {
             InitializeComponent();
         }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
+        void Close_Click(object sender, RoutedEventArgs e) => Close();
+        void Min_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+        void Max_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (WindowState != System.Windows.WindowState.Normal)
+            {
+                WindowState = System.Windows.WindowState.Normal;
+                if (WindowState == WindowState.Normal)
+                {
+
+                }
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+                if (WindowState == WindowState.Maximized)
+                {
+
+
+                }
+            }
+        }
     }
 }

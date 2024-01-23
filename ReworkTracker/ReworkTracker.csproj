@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Themes\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 

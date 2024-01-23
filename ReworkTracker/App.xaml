@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:ReworkTracker"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/StackPanelTheme.xaml"/>
+                <ResourceDictionary Source="Themes/FileTheme.xaml"/>
+                <ResourceDictionary Source="Themes/StaticMenuButton.xaml"/>
+                <ResourceDictionary Source="Themes/TopThreeTheme.xaml"/>
+                <ResourceDictionary Source="Themes/ComboBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

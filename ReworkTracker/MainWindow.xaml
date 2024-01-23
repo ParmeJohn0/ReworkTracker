@@ -4,9 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReworkTracker"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button
+            Grid.Column="1"
+            Margin="375,0,2,194"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="Close_Click"
+            Content="X"
+            Foreground="White"
+            Style="{StaticResource TopThreeTheme}" />
+        <Button
+            Grid.Column="1"
+            Margin="325,0,50,194"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="Min_Click"
+            Content="_"
+            Foreground="White"
+            Style="{StaticResource TopThreeTheme}" />
+        <Button
+            Grid.Column="1"
+            Margin="350,0,25,194"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="Max_Click"
+            Content="❐"
+            Foreground="White"
+            Style="{StaticResource TopThreeTheme}" />
     </Grid>
 </Window>
