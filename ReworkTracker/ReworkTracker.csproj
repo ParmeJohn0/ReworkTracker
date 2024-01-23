@@ -9,8 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UpstateDoor_MasterLogo_4c.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UpstateDoor_MasterLogo_4c.png" />
   </ItemGroup>
 
 </Project>
