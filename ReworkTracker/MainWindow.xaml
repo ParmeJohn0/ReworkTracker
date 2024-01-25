@@ -46,5 +46,6 @@
             Content="❐"
             Foreground="White"
             Style="{StaticResource TopThreeTheme}" />
+        <Button Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="51,140,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>

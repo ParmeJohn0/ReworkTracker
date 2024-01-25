@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ReworkTracker.Services;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -47,6 +48,11 @@ namespace ReworkTracker
 
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
