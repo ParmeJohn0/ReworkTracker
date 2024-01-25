@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ReworkTracker.Services;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -70,6 +71,5 @@ namespace ReworkTracker
             //call the SQL statement to insert the data into the database
 
         }
-
     }
 }
