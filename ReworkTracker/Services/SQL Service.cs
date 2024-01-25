@@ -25,7 +25,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT idEmployees, FirstName, LastName FROM upstate_service.employees WHERE Active = 1";
+            strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1";
 
             try
             {
@@ -66,7 +66,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT iddeparments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1";
+            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1";
 
             try
             {
@@ -107,7 +107,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT iddefect_codes, Code, Group FROM upstate_service.defect_codes WHERE Active = 1";
+            strSQLcall = "SELECT iddefect_codes, Code, Grouper FROM upstate_service.defect_codes WHERE Active = 1";
 
             try
             {
@@ -122,7 +122,15 @@ namespace ReworkTracker.Services
                         code = new Codes();
                         code.iddefect_codes = odbcDataReader.GetInt32(0);
                         code.Code = odbcDataReader.GetString(1);
-                        code.Group = odbcDataReader.GetString(2);
+                        if(!(odbcDataReader.IsDBNull(2)))
+                        {
+                            code.Group = odbcDataReader.GetString(2);
+                        }
+                        else
+                        {
+                            code.Group = "No Group";
+                        }
+
                         objReturn.Add(code);
                     }
                 }

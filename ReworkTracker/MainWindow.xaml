@@ -27,9 +27,13 @@
             x:Name="DepartmentCombo"
             Width="169"
             Height="43"
+            FontSize="18"
             Margin="193,180,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
             Style="{StaticResource ComboBoxFlatStyle}">
             <ComboBox.Effect>
                 <DropShadowEffect
@@ -40,17 +44,16 @@
             </ComboBox.Effect>
         </ComboBox>
         <ComboBox
-            Width="120"
-            Margin="960,120,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
-        <ComboBox
             x:Name="EmployeeCombo"
             Width="171"
             Height="43"
             Margin="7,180,0,0"
             HorizontalAlignment="Left"
+            FontSize="18"
             VerticalAlignment="Top"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
             Style="{StaticResource ComboBoxFlatStyle}">
             <ComboBox.Effect>
                 <DropShadowEffect
@@ -63,8 +66,9 @@
         <ComboBox
             x:Name="QtyCombo"
             Width="111"
-            Height="41"
+            Height="45"
             Margin="681,287,0,0"
+            FontSize="18"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Style="{StaticResource ComboBoxFlatStyle}">
@@ -121,12 +125,16 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <ComboBox
-            x:Name="QtyCombo_Copy"
+            x:Name="TypeCombo"
             Width="128"
-            Height="42"
+            Height="46"
+            FontSize="18"
             Margin="540,287,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
             Style="{StaticResource ComboBoxFlatStyle}">
             <ComboBox.Effect>
                 <DropShadowEffect
@@ -136,7 +144,7 @@
                     ShadowDepth="7" />
             </ComboBox.Effect>
         </ComboBox>
-        <TextBox
+        <TextBox x:Name="txtJobNumber"
             Width="153"
             Height="43"
             Margin="640,180,0,0"
@@ -218,6 +226,10 @@
             Width="243"
             Height="43"
             Margin="380,180,0,0"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
+            FontSize="18"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Style="{StaticResource ComboBoxFlatStyle}">
@@ -229,9 +241,9 @@
                     ShadowDepth="7" />
             </ComboBox.Effect>
         </ComboBox>
-        <TextBox
+        <TextBox x:Name="txtDescriptionFixed"
             Width="246"
-            Height="95"
+            Height="104"
             Margin="0,287,0,0"
             Padding="5"
             HorizontalAlignment="Center"
@@ -266,9 +278,9 @@
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White" />
-        <TextBox
+        <TextBox x:Name="txtDescription"
             Width="254"
-            Height="95"
+            Height="104"
             Margin="7,287,0,0"
             Padding="5"
             HorizontalAlignment="Left"
