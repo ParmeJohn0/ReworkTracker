@@ -9,14 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UpstateDoor_MasterLogo_4c.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.3.0" />
-    <PackageReference Include="MySqlConnector" Version="2.3.5" />
-    <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
+    <Resource Include="UpstateDoor_MasterLogo_4c.png" />
   </ItemGroup>
 
 </Project>
