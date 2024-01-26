@@ -170,8 +170,9 @@
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
             Text=""
+            TextChanged="txtJobNumber_TextChanged"
             TextWrapping="Wrap"
-            UseLayoutRounding="True" TextChanged="txtJobNumber_TextChanged">
+            UseLayoutRounding="True">
             <TextBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -193,7 +194,7 @@
             Foreground="White" />
         <Button
             x:Name="SubmitButton"
-            Margin="532,556,143,10"
+            Margin="549,556,134,10"
             Click="SubmitButton_Click"
             Content="Submit"
             FontSize="18"
@@ -202,7 +203,7 @@
             Style="{StaticResource TopThreeTheme}" />
         <Button
             x:Name="ClearButton"
-            Margin="400,556,277,10"
+            Margin="425,556,260,10"
             Click="ClearButton_Click"
             Content="Clear"
             FontSize="18"
@@ -211,7 +212,7 @@
             Style="{StaticResource TopThreeTheme}" />
         <Button
             x:Name="CloseButton"
-            Margin="667,556,10,10"
+            Margin="675,556,10,10"
             Click="CloseButton_Click"
             Content="Close"
             FontSize="18"
@@ -422,14 +423,98 @@
         <Label
             x:Name="JobNumberError"
             Width="258"
-            Height="22"
+            Height="30"
             Margin="518,330,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Foreground="Red"
             HorizontalContentAlignment="Center"
-            Content= "Requires 7 Digits"
+            Content="Requires 7 Digits"
             FontSize="10"
-            FontWeight="ExtraLight" />
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="DescriptionRequired"
+            Width="214"
+            Height="28"
+            Margin="36,540,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="HowRequired"
+            Width="214"
+            Height="28"
+            Margin="275,540,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="TypeRequired"
+            Width="216"
+            Height="28"
+            Margin="35,332,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="QtyRequired"
+            Width="218"
+            Height="28"
+            Margin="274,332,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="EmployeeRequired"
+            Width="216"
+            Height="28"
+            Margin="35,201,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="DepartmentRequired"
+            Width="218"
+            Height="28"
+            Margin="274,201,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+        <Label
+            x:Name="DefectRequired"
+            Width="256"
+            Height="28"
+            Margin="520,201,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
     </Grid>
 </Window>

@@ -1,18 +1,17 @@
-﻿using Microsoft.Extensions.Logging.Abstractions;
-using Mysqlx.Crud;
-using ReworkTracker.Models;
-using System;
-using System.Collections.Generic;
+﻿using ReworkTracker.Models;
 using System.Configuration;
 using System.Data.Odbc;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReworkTracker.Services
 {
     public class SQL_Service
     {
+
+        //log file path
+        string logfilepath = "J:\\_WasteDatabase\\Logs\\WasteDataBaseLogs.txt";
+        string logentry = string.Empty;
+        string timestamp = DateTime.Now.ToString(" MM/dd/yyyy HH:mm:ss");
+
         /// <summary>
         /// DS - 1/25/24
         /// Returns active employees from the employees table in the upstate_service database
@@ -25,7 +24,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1";
+            strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1 order by LastName asc;";
 
             try
             {
@@ -48,8 +47,8 @@ namespace ReworkTracker.Services
             }
             catch (Exception ex)
             {
-                //logentry = "\n •Error retrieving Packid from Pack table: " + ex.Message;
-                //System.IO.File.AppendAllText(logfilepath, logentry);
+                logentry = "\n •Error retrieving Employees from DB " + ex.Message + timestamp ;
+                System.IO.File.AppendAllText(logfilepath, logentry);
             }
             return objReturn;               
         }
@@ -66,7 +65,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1";
+            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1;";
 
             try
             {
@@ -89,8 +88,8 @@ namespace ReworkTracker.Services
             }
             catch (Exception ex)
             {
-                //logentry = "\n •Error retrieving Packid from Pack table: " + ex.Message;
-                //System.IO.File.AppendAllText(logfilepath, logentry);
+                logentry = "\n •Error retrieving Departments from DB" + ex.Message + timestamp;
+                System.IO.File.AppendAllText(logfilepath, logentry);
             }
             return objReturn;
         }
@@ -137,8 +136,8 @@ namespace ReworkTracker.Services
             }
             catch (Exception ex)
             {
-                //logentry = "\n •Error retrieving Packid from Pack table: " + ex.Message;
-                //System.IO.File.AppendAllText(logfilepath, logentry);
+                logentry = "\n •Error retrieving Codes from DB" + ex.Message + timestamp;
+                System.IO.File.AppendAllText(logfilepath, logentry);
             }
             return objReturn;
         }
@@ -179,11 +178,9 @@ namespace ReworkTracker.Services
             }
             catch (Exception ex)
             {
-                //Show scanerror message
-                //scan_error scan_Error = new scan_error();
-                //scan_Error.ShowDialog();
-                //logentry = "\n •Error inserting records into Tally table: " + ex.Message;
-                //System.IO.File.AppendAllText(logfilepath, logentry);
+               
+                logentry = "\n •Error inserting a ticket into WasteDB" + ex.Message + timestamp;
+                System.IO.File.AppendAllText(logfilepath, logentry);
             }
             return bUpdated;
         }
