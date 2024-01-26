@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
     Width="800"
-    Height="450"
+    Height="600"
     Background="#1D2021"
     BorderBrush="White"
     BorderThickness=".5"
@@ -16,7 +16,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Grid Height="449" VerticalAlignment="Bottom">
+    <Grid Height="600" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -25,12 +25,13 @@
         </Grid.RowDefinitions>
         <ComboBox
             x:Name="DepartmentCombo"
-            Width="169"
+            Width="219"
             Height="43"
-            FontSize="18"
-            Margin="193,180,0,0"
+            Margin="273,158,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            FontSize="18"
+            FontWeight="ExtraLight"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
@@ -45,12 +46,13 @@
         </ComboBox>
         <ComboBox
             x:Name="EmployeeCombo"
-            Width="171"
+            Width="218"
             Height="43"
-            Margin="7,180,0,0"
+            Margin="33,158,0,0"
             HorizontalAlignment="Left"
-            FontSize="18"
             VerticalAlignment="Top"
+            FontSize="18"
+            FontWeight="ExtraLight"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
@@ -65,12 +67,16 @@
         </ComboBox>
         <ComboBox
             x:Name="QtyCombo"
-            Width="111"
+            Width="219"
             Height="45"
-            Margin="681,287,0,0"
-            FontSize="18"
+            Margin="273,286,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
             Style="{StaticResource ComboBoxFlatStyle}">
             <ComboBox.Effect>
                 <DropShadowEffect
@@ -81,9 +87,9 @@
             </ComboBox.Effect>
         </ComboBox>
         <Label
-            Width="111"
+            Width="215"
             Height="38"
-            Margin="681,250,0,0"
+            Margin="275,249,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -92,9 +98,9 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <Label
-            Width="171"
+            Width="218"
             Height="36"
-            Margin="7,144,0,0"
+            Margin="33,122,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -103,9 +109,9 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <Label
-            Width="169"
+            Width="215"
             Height="36"
-            Margin="193,144,0,0"
+            Margin="275,122,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -114,9 +120,9 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <Label
-            Width="128"
+            Width="216"
             Height="35"
-            Margin="540,252,0,0"
+            Margin="35,251,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -126,12 +132,13 @@
             Foreground="White" />
         <ComboBox
             x:Name="TypeCombo"
-            Width="128"
+            Width="218"
             Height="46"
-            FontSize="18"
-            Margin="540,287,0,0"
+            Margin="33,286,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            FontSize="18"
+            FontWeight="ExtraLight"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
@@ -144,10 +151,11 @@
                     ShadowDepth="7" />
             </ComboBox.Effect>
         </ComboBox>
-        <TextBox x:Name="txtJobNumber"
-            Width="153"
+        <TextBox
+            x:Name="txtJobNumber"
+            Width="258"
             Height="43"
-            Margin="640,180,0,0"
+            Margin="518,287,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -155,7 +163,7 @@
             Background="#1D2021"
             BorderBrush="#4C5152"
             BorderThickness=".7"
-            FontSize="16"
+            FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
@@ -163,7 +171,7 @@
             SnapsToDevicePixels="True"
             Text=""
             TextWrapping="Wrap"
-            UseLayoutRounding="True">
+            UseLayoutRounding="True" TextChanged="txtJobNumber_TextChanged">
             <TextBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -173,9 +181,9 @@
             </TextBox.Effect>
         </TextBox>
         <Label
-            Width="153"
+            Width="256"
             Height="36"
-            Margin="640,144,0,0"
+            Margin="518,251,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -185,7 +193,7 @@
             Foreground="White" />
         <Button
             x:Name="SubmitButton"
-            Margin="532,407,143,10"
+            Margin="532,556,143,10"
             Click="SubmitButton_Click"
             Content="Submit"
             FontSize="18"
@@ -194,7 +202,7 @@
             Style="{StaticResource TopThreeTheme}" />
         <Button
             x:Name="ClearButton"
-            Margin="400,407,277,10"
+            Margin="400,556,277,10"
             Click="ClearButton_Click"
             Content="Clear"
             FontSize="18"
@@ -203,7 +211,7 @@
             Style="{StaticResource TopThreeTheme}" />
         <Button
             x:Name="CloseButton"
-            Margin="667,407,10,10"
+            Margin="667,556,10,10"
             Click="CloseButton_Click"
             Content="Close"
             FontSize="18"
@@ -211,9 +219,9 @@
             Foreground="White"
             Style="{StaticResource TopThreeTheme}" />
         <Label
-            Width="243"
+            Width="258"
             Height="36"
-            Margin="380,144,0,0"
+            Margin="518,122,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -223,15 +231,16 @@
             Foreground="White" />
         <ComboBox
             x:Name="DefectCombo"
-            Width="243"
+            Width="258"
             Height="43"
-            Margin="380,180,0,0"
+            Margin="518,158,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="18"
+            FontWeight="ExtraLight"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
-            FontSize="18"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             Style="{StaticResource ComboBoxFlatStyle}">
             <ComboBox.Effect>
                 <DropShadowEffect
@@ -241,17 +250,19 @@
                     ShadowDepth="7" />
             </ComboBox.Effect>
         </ComboBox>
-        <TextBox x:Name="txtDescriptionFixed"
-            Width="246"
-            Height="104"
-            Margin="0,287,0,0"
+        <TextBox
+            x:Name="txtDescriptionFixed"
+            Width="219"
+            Height="124"
+            Margin="273,416,0,0"
             Padding="5"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#1D2021"
             BorderBrush="#4C5152"
             BorderThickness=".7"
             FontSize="16"
+            FontWeight="ExtraLight"
             Foreground="White"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
@@ -268,9 +279,9 @@
             </TextBox.Effect>
         </TextBox>
         <Label
-            Width="244"
-            Height="35"
-            Margin="283,252,0,0"
+            Width="217"
+            Height="36"
+            Margin="275,380,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -278,10 +289,11 @@
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White" />
-        <TextBox x:Name="txtDescription"
-            Width="254"
-            Height="104"
-            Margin="7,287,0,0"
+        <TextBox
+            x:Name="txtDescription"
+            Width="215"
+            Height="124"
+            Margin="35,416,0,0"
             Padding="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -289,6 +301,7 @@
             BorderBrush="#4C5152"
             BorderThickness=".7"
             FontSize="16"
+            FontWeight="ExtraLight"
             Foreground="White"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
@@ -305,9 +318,9 @@
             </TextBox.Effect>
         </TextBox>
         <Label
-            Width="254"
-            Height="35"
-            Margin="7,252,0,0"
+            Width="215"
+            Height="36"
+            Margin="36,380,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -334,7 +347,7 @@
             IsEnabled="False"
             TextWrapping="Wrap" />
         <Button
-            Margin="776,1,1,419"
+            Margin="776,1,1,570"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Click="Close_Click"
@@ -342,7 +355,7 @@
             Foreground="White"
             Style="{StaticResource TopThreeTheme}" />
         <Button
-            Margin="728,1,47,419"
+            Margin="728,1,47,570"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Click="Min_Click"
@@ -350,7 +363,7 @@
             Foreground="White"
             Style="{StaticResource TopThreeTheme}" />
         <Button
-            Margin="752,1,23,419"
+            Margin="752,1,23,570"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Click="Max_Click"
@@ -368,5 +381,55 @@
             SnapsToDevicePixels="True"
             Source="/UpstateDoor_MasterLogo_4c.png"
             UseLayoutRounding="True" />
+        <TextBox
+            x:Name="txtImprovement"
+            Width="258"
+            Height="124"
+            Margin="518,416,0,0"
+            Padding="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#1D2021"
+            BorderBrush="#4C5152"
+            BorderThickness=".7"
+            FontSize="16"
+            Foreground="White"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
+            Text=""
+            TextWrapping="Wrap"
+            UseLayoutRounding="True">
+            <TextBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </TextBox.Effect>
+        </TextBox>
+        <Label
+            Width="256"
+            Height="36"
+            Margin="518,380,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Improvement Suggestion"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            Foreground="White" />
+        <Label
+            x:Name="JobNumberError"
+            Width="258"
+            Height="22"
+            Margin="518,330,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Foreground="Red"
+            HorizontalContentAlignment="Center"
+            Content= "Requires 7 Digits"
+            FontSize="10"
+            FontWeight="ExtraLight" />
     </Grid>
 </Window>

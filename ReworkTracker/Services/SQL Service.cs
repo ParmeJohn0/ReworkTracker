@@ -160,7 +160,7 @@ namespace ReworkTracker.Services
                     {
                         var command = cn.CreateCommand();
                         command.CommandText = "INSERT INTO waste_database (entry_date, department_id, employee_id, job_number, part_qty, defect_code_id, " +
-                            "issue_description, improvement_suggestion, scrap_rework_waste) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                            "issue_description, resolution_description, improvement_suggestion, scrap_rework_waste) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
                         command.Parameters.AddWithValue("$entry_date", objWaste.entry_date);
                         command.Parameters.AddWithValue("$department_id", objWaste.department_id);
                         command.Parameters.AddWithValue("$employee_id", objWaste.employee_id);
@@ -168,6 +168,7 @@ namespace ReworkTracker.Services
                         command.Parameters.AddWithValue("$part_qty", objWaste.part_qty);
                         command.Parameters.AddWithValue("$defect_code_id", objWaste.defect_code_id);
                         command.Parameters.AddWithValue("$issue_description", objWaste.issue_description);
+                        command.Parameters.AddWithValue("$resolution_description", objWaste.resolution_description);
                         command.Parameters.AddWithValue("$improvement_suggestion", objWaste.improvement_suggestion);
                         command.Parameters.AddWithValue("$scrap_rework_waste", objWaste.scrap_rework_waste);
 
