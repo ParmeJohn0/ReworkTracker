@@ -279,5 +279,9 @@ namespace ReworkTracker
                 SubmitButton.IsEnabled = false;
             }
         }
+        private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+
+        }
     }
 }
