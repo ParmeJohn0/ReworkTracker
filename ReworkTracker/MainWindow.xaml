@@ -278,7 +278,7 @@
             x:Name="DepartmentCombo"
             Width="219"
             Height="43"
-            Margin="273,158,0,0"
+            Margin="266,158,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="18"
@@ -286,7 +286,7 @@
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
+            Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="DepartmentCombo_SelectionChanged">
             <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -299,7 +299,7 @@
             x:Name="EmployeeCombo"
             Width="218"
             Height="43"
-            Margin="33,158,0,0"
+            Margin="26,158,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="18"
@@ -307,7 +307,7 @@
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
+            Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="EmployeeCombo_SelectionChanged">
             <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -320,7 +320,7 @@
             x:Name="QtyCombo"
             Width="219"
             Height="45"
-            Margin="273,286,0,0"
+            Margin="266,286,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="18"
@@ -328,7 +328,7 @@
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
+            Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="QtyCombo_SelectionChanged">
             <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -340,7 +340,7 @@
         <Label
             Width="215"
             Height="38"
-            Margin="275,249,0,0"
+            Margin="268,249,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -351,7 +351,7 @@
         <Label
             Width="218"
             Height="36"
-            Margin="33,122,0,0"
+            Margin="26,122,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -362,7 +362,7 @@
         <Label
             Width="215"
             Height="36"
-            Margin="275,122,0,0"
+            Margin="268,122,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -373,7 +373,7 @@
         <Label
             Width="216"
             Height="35"
-            Margin="35,251,0,0"
+            Margin="28,251,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -385,7 +385,7 @@
             x:Name="TypeCombo"
             Width="218"
             Height="46"
-            Margin="33,286,0,0"
+            Margin="26,286,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="18"
@@ -393,7 +393,7 @@
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
+            Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="TypeCombo_SelectionChanged">
             <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -406,7 +406,7 @@
             x:Name="txtJobNumber"
             Width="258"
             Height="43"
-            Margin="518,287,0,0"
+            Margin="511,287,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -435,7 +435,7 @@
         <Label
             Width="256"
             Height="36"
-            Margin="518,251,0,0"
+            Margin="511,251,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -451,7 +451,7 @@
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White"
-            Style="{StaticResource TopThreeTheme}" />
+            Style="{StaticResource MainButtonTheme}" />
         <Button
             x:Name="ClearButton"
             Margin="425,556,260,10"
@@ -460,7 +460,7 @@
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White"
-            Style="{StaticResource TopThreeTheme}" />
+            Style="{StaticResource MainButtonTheme}" />
         <Button
             x:Name="CloseButton"
             Margin="675,556,10,10"
@@ -469,11 +469,11 @@
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White"
-            Style="{StaticResource TopThreeTheme}" />
+            Style="{StaticResource MainButtonTheme}" />
         <Label
             Width="258"
             Height="36"
-            Margin="518,122,0,0"
+            Margin="511,122,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -485,7 +485,7 @@
             x:Name="DefectCombo"
             Width="258"
             Height="43"
-            Margin="518,158,0,0"
+            Margin="511,158,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontSize="18"
@@ -493,7 +493,7 @@
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
+            Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="DefectCombo_SelectionChanged">
             <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -506,7 +506,7 @@
             x:Name="txtDescriptionFixed"
             Width="219"
             Height="124"
-            Margin="273,416,0,0"
+            Margin="266,416,0,0"
             Padding="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -521,7 +521,7 @@
             SnapsToDevicePixels="True"
             Text=""
             TextWrapping="Wrap"
-            UseLayoutRounding="True">
+            UseLayoutRounding="True" TextChanged="txtDescriptionFixed_TextChanged">
             <TextBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -533,7 +533,7 @@
         <Label
             Width="217"
             Height="36"
-            Margin="275,380,0,0"
+            Margin="268,380,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -545,7 +545,7 @@
             x:Name="txtDescription"
             Width="215"
             Height="124"
-            Margin="35,416,0,0"
+            Margin="28,416,0,0"
             Padding="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -560,7 +560,7 @@
             SnapsToDevicePixels="True"
             Text=""
             TextWrapping="Wrap"
-            UseLayoutRounding="True">
+            UseLayoutRounding="True" TextChanged="txtDescription_TextChanged">
             <TextBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -572,7 +572,7 @@
         <Label
             Width="215"
             Height="36"
-            Margin="36,380,0,0"
+            Margin="29,380,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -625,7 +625,7 @@
         <Image
             Width="1065"
             Height="174"
-            Margin="137,-34,0,0"
+            Margin="58,-199,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
@@ -637,7 +637,7 @@
             x:Name="txtImprovement"
             Width="258"
             Height="124"
-            Margin="518,416,0,0"
+            Margin="511,416,0,0"
             Padding="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -663,7 +663,7 @@
         <Label
             Width="256"
             Height="36"
-            Margin="518,380,0,0"
+            Margin="511,380,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -675,7 +675,7 @@
             x:Name="JobNumberError"
             Width="258"
             Height="30"
-            Margin="518,330,0,0"
+            Margin="511,330,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -687,7 +687,7 @@
             x:Name="DescriptionRequired"
             Width="214"
             Height="28"
-            Margin="36,540,0,0"
+            Margin="29,540,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -699,7 +699,7 @@
             x:Name="HowRequired"
             Width="214"
             Height="28"
-            Margin="275,540,0,0"
+            Margin="268,540,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -711,7 +711,7 @@
             x:Name="TypeRequired"
             Width="216"
             Height="28"
-            Margin="35,332,0,0"
+            Margin="28,332,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -723,7 +723,7 @@
             x:Name="QtyRequired"
             Width="218"
             Height="28"
-            Margin="274,332,0,0"
+            Margin="267,332,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -735,7 +735,7 @@
             x:Name="EmployeeRequired"
             Width="216"
             Height="28"
-            Margin="35,201,0,0"
+            Margin="28,201,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -747,7 +747,7 @@
             x:Name="DepartmentRequired"
             Width="218"
             Height="28"
-            Margin="274,201,0,0"
+            Margin="267,201,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -759,7 +759,7 @@
             x:Name="DefectRequired"
             Width="256"
             Height="28"
-            Margin="520,201,0,0"
+            Margin="513,201,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"

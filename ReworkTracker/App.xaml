@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Themes/StaticMenuButton.xaml"/>
                 <ResourceDictionary Source="Themes/TopThreeTheme.xaml"/>
                 <ResourceDictionary Source="Themes/ComboBox.xaml"/>
+                <ResourceDictionary Source="Themes/MainButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

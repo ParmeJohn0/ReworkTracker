@@ -153,6 +153,14 @@ namespace ReworkTracker
             {
                 TypeRequired.Visibility = Visibility.Hidden;
             }
+            if (string.IsNullOrEmpty(txtDescriptionFixed.Text))
+            {
+                HowRequired.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                HowRequired.Visibility = Visibility.Hidden;
+            }
             if (string.IsNullOrEmpty(txtDescription.Text))
             {
                 DescriptionRequired.Visibility = Visibility.Visible;
@@ -161,16 +169,11 @@ namespace ReworkTracker
             {
                 DescriptionRequired.Visibility = Visibility.Hidden;
             }
-            if (string.IsNullOrEmpty(txtImprovement.Text))
-            {
-                HowRequired.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                HowRequired.Visibility = Visibility.Hidden;
-            }
+
             //If all the fields are filled out, submit the data to the database
-            if (string.IsNullOrEmpty(txtJobNumber.Text) || string.IsNullOrEmpty(DepartmentCombo.Text) || string.IsNullOrEmpty(EmployeeCombo.Text) || string.IsNullOrEmpty(QtyCombo.Text) || string.IsNullOrEmpty(DefectCombo.Text) || string.IsNullOrEmpty(TypeCombo.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(txtImprovement.Text))
+            if (string.IsNullOrEmpty(txtJobNumber.Text) || string.IsNullOrEmpty(DepartmentCombo.Text) 
+                || string.IsNullOrEmpty(EmployeeCombo.Text) || string.IsNullOrEmpty(QtyCombo.Text) || string.IsNullOrEmpty(DefectCombo.Text) 
+                || string.IsNullOrEmpty(TypeCombo.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(txtDescriptionFixed.Text))
             {
                 //Do nothing
             }
@@ -282,6 +285,62 @@ namespace ReworkTracker
         private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
 
+        }
+        private void TypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if typerequired is visible, set it to hidden.
+            if (TypeRequired.Visibility == Visibility.Visible)
+            {
+                TypeRequired.Visibility = Visibility.Hidden;
+            }
+        }
+        private void QtyCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if typerequired is visible, set it to hidden.
+            if (TypeRequired.Visibility == Visibility.Visible)
+            {
+                TypeRequired.Visibility = Visibility.Hidden;
+            }
+        }
+        private void DefectCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if defectrequired is visible, set it to hidden.
+            if (DefectRequired.Visibility == Visibility.Visible)
+            {
+                DefectRequired.Visibility = Visibility.Hidden;
+            }
+        }
+        private void DepartmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if departmentrequired is visible, set it to hidden.
+            if (DepartmentRequired.Visibility == Visibility.Visible)
+            {
+                DepartmentRequired.Visibility = Visibility.Hidden;
+            }
+        }
+        private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if employeerequired is visible, set it to hidden.
+            if (EmployeeRequired.Visibility == Visibility.Visible)
+            {
+                EmployeeRequired.Visibility = Visibility.Hidden;
+            }
+        }
+        private void txtDescription_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //if descriptionrequired is visible set it to hidden
+            if (DescriptionRequired.Visibility == Visibility.Visible)
+            {
+                DescriptionRequired.Visibility = Visibility.Hidden;
+            }
+        }
+        private void txtDescriptionFixed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //if howrequired is visible set it to hidden.
+            if (HowRequired.Visibility == Visibility.Visible)
+            {
+                HowRequired.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

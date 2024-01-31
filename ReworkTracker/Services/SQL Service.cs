@@ -24,7 +24,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1 order by LastName asc;";
+            strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1 order by FirstName asc;";
 
             try
             {

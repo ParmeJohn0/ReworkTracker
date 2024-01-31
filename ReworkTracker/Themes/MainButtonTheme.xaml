@@ -2,7 +2,7 @@
 
 
     <Style
-        x:Key="TopThreeTheme"
+        x:Key="MainButtonTheme"
         BasedOn="{StaticResource {x:Type Button}}"
         TargetType="{x:Type Button}">
         <Style.Setters>
@@ -24,7 +24,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Background" Value="#1D2021" />
+            <Setter Property="Background" Value="#252829" />
         </Style.Setters>
 
         <Style.Triggers>
