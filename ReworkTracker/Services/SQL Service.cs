@@ -58,14 +58,14 @@ namespace ReworkTracker.Services
         /// Returns active departments from the departments table in the upstate_service database
         /// </summary>
         /// <returns> List<Departments> </returns>
-        public List<Departments> RetrieveActiveDepartments()
+        public List<WarsawDepartments> RetrieveActiveWarsawDepartments()
         {
-            List<Departments> objReturn = new List<Departments>();
-            Departments department;
+            List<WarsawDepartments> objReturn = new List<WarsawDepartments>();
+            WarsawDepartments department;
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1;";
+            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1 and Facility = 'Warsaw';";
 
             try
             {
@@ -77,13 +77,48 @@ namespace ReworkTracker.Services
                     using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
                     while (odbcDataReader.Read())
                     {
-                        department = new Departments();
+                        department = new WarsawDepartments();
                         department.iddepartments = odbcDataReader.GetInt32(0);
                         department.Name = odbcDataReader.GetString(1);
                         department.Facility = odbcDataReader.GetString(2);
                         department.type = odbcDataReader.GetString(3);
                         objReturn.Add(department);
                     }                    
+                }
+            }
+            catch (Exception ex)
+            {
+                logentry = "\n •Error retrieving Departments from DB" + ex.Message + timestamp;
+                System.IO.File.AppendAllText(logfilepath, logentry);
+            }
+            return objReturn;
+        }
+        public List<CastileDepartments> RetrieveActiveCastileDepartments()
+        {
+            List<CastileDepartments> objReturn = new List<CastileDepartments>();
+            CastileDepartments department;
+            string strSQLcall = string.Empty;
+
+            //Set SQL statement
+            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1 and Facility = 'Castile';";
+
+            try
+            {
+                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+                {
+                    conn.Open();
+                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
+                    cmd.Connection = conn;
+                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+                    while (odbcDataReader.Read())
+                    {
+                        department = new CastileDepartments();
+                        department.iddepartments = odbcDataReader.GetInt32(0);
+                        department.Name = odbcDataReader.GetString(1);
+                        department.Facility = odbcDataReader.GetString(2);
+                        department.type = odbcDataReader.GetString(3);
+                        objReturn.Add(department);
+                    }
                 }
             }
             catch (Exception ex)

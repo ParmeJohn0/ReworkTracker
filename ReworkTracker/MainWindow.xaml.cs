@@ -21,7 +21,6 @@ namespace ReworkTracker
             timer.Tick += Timer_Tick;
             timer.Start();
             FillEmployeeComboBox();
-            DepartmentComboFill();
             DefectComboFill();
             QtyCombo.Items.Add("1");
             QtyCombo.Items.Add("2");
@@ -185,7 +184,15 @@ namespace ReworkTracker
                 //DateTimeNow
                 waste.entry_date = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
                 //Department
-                foreach (Departments department in sqlService.RetrieveActiveDepartments())
+                foreach (WarsawDepartments department in sqlService.RetrieveActiveWarsawDepartments())
+                {
+                    if (string.Equals(department.Name, DepartmentCombo.Text))
+                    {
+                        waste.department_id = department.iddepartments;
+                    }
+
+                }
+                foreach (CastileDepartments department in sqlService.RetrieveActiveCastileDepartments())
                 {
                     if (string.Equals(department.Name, DepartmentCombo.Text))
                     {
@@ -243,13 +250,25 @@ namespace ReworkTracker
                 EmployeeCombo.Items.Add(employee.FirstName + " " + employee.LastName);
             }
         }
-        void DepartmentComboFill()
+        void WarsawDepartmentComboFill()
         {
             //Return the values from SQLService
             SQL_Service sqlService = new SQL_Service();
-            sqlService.RetrieveActiveDepartments();
+            sqlService.RetrieveActiveWarsawDepartments();
 
-            foreach (Departments department in sqlService.RetrieveActiveDepartments())
+            foreach (WarsawDepartments department in sqlService.RetrieveActiveWarsawDepartments())
+            {
+                //Add the department to the combobox
+                DepartmentCombo.Items.Add(department.Name);
+            }
+        }
+        void CastileDepartmentComboFill()
+        {
+            //Return the values from SQLService
+            SQL_Service sqlService = new SQL_Service();
+            sqlService.RetrieveActiveCastileDepartments();
+
+            foreach (CastileDepartments department in sqlService.RetrieveActiveCastileDepartments())
             {
                 //Add the department to the combobox
                 DepartmentCombo.Items.Add(department.Name);
@@ -341,6 +360,16 @@ namespace ReworkTracker
             {
                 HowRequired.Visibility = Visibility.Hidden;
             }
+        }
+        private void WarsawRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DepartmentCombo.Items.Clear();
+            WarsawDepartmentComboFill();
+        }
+        private void CastileRadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            DepartmentCombo.Items.Clear();
+            CastileDepartmentComboFill();
         }
     }
 }

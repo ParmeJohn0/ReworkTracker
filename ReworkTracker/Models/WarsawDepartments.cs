@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReworkTracker.Models
 {
-    public class Departments
+    public class WarsawDepartments
     {
         public int iddepartments { get; set; }
         public string Name { get; set; }
