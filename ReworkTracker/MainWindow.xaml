@@ -286,6 +286,7 @@
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SelectionChanged="DepartmentCombo_SelectionChanged"
+            
             SnapsToDevicePixels="True"
             Style="{StaticResource ComboBoxFlatStyle}">
             <ComboBox.Effect>
@@ -801,5 +802,14 @@
             FontWeight="ExtraLight"
             GroupName="Facility"
             Style="{StaticResource StaticMenuButton}" />
+        <Rectangle 
+            x:Name="LocationHighlight"
+            HorizontalAlignment="Left" 
+            Height="49" 
+            Margin="303,93,0,0" 
+            StrokeThickness="3"
+            Stroke="Red" 
+            VerticalAlignment="Top" 
+            Width="197"/>
     </Grid>
 </Window>
