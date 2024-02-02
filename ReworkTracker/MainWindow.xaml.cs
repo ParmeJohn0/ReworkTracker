@@ -22,6 +22,7 @@ namespace ReworkTracker
             timer.Start();
             FillEmployeeComboBox();
             DefectComboFill();
+            InitialDepartmentFill();
             QtyCombo.Items.Add("1");
             QtyCombo.Items.Add("2");
             QtyCombo.Items.Add("3");
@@ -46,6 +47,7 @@ namespace ReworkTracker
             DescriptionRequired.Visibility = Visibility.Hidden;
             HowRequired.Visibility = Visibility.Hidden;
             DescriptionRequired.Visibility = Visibility.Hidden;
+            LocationHighlight.Visibility = Visibility.Hidden;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void Timer_Tick(object sender, EventArgs e)
@@ -250,6 +252,11 @@ namespace ReworkTracker
                 EmployeeCombo.Items.Add(employee.FirstName + " " + employee.LastName);
             }
         }
+        //DS - At start 
+        void InitialDepartmentFill()
+        {
+            DepartmentCombo.Items.Add("Choose Location First");          
+        }
         void WarsawDepartmentComboFill()
         {
             //Return the values from SQLService
@@ -336,8 +343,16 @@ namespace ReworkTracker
             {
                 DepartmentRequired.Visibility = Visibility.Hidden;
             }
-        }
-        private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            if ((DepartmentCombo.SelectedItem != null) && (DepartmentCombo.SelectedItem.ToString() == "Choose Location First"))
+            {
+                LocationHighlight.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LocationHighlight.Visibility = Visibility.Hidden;
+            }
+        }            
+            private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if employeerequired is visible, set it to hidden.
             if (EmployeeRequired.Visibility == Visibility.Visible)
