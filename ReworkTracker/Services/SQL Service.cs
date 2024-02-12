@@ -52,7 +52,6 @@ namespace ReworkTracker.Services
             }
             return objReturn;               
         }
-
         /// <summary>
         /// DS - 1/25/24
         /// Returns active departments from the departments table in the upstate_service database
@@ -128,7 +127,6 @@ namespace ReworkTracker.Services
             }
             return objReturn;
         }
-
         /// <summary>
         /// DS - 1/25/24
         /// Returns active defect codes from the defect_codes table in the upstate_service database
@@ -218,6 +216,80 @@ namespace ReworkTracker.Services
                 System.IO.File.AppendAllText(logfilepath, logentry);
             }
             return bUpdated;
+        }
+        /// <summary> JP - 2/12/24 Adding List to get the what was wrong combo box codes </summary>
+        /// 
+        public List<WhatWasWrong> RetrieveWhatWasWrong()
+        {
+            List<WhatWasWrong> objReturn = new List<WhatWasWrong>();
+            WhatWasWrong whatWasWrong;
+            string strSQLcall = string.Empty;
+
+            //Set SQL statement
+            strSQLcall = "SELECT id, what_code, department, active FROM upstate_service.what_was_wrong WHERE active = 1";
+
+            try
+            {
+                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+                {
+                    conn.Open();
+                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
+                    cmd.Connection = conn;
+                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+                    while (odbcDataReader.Read())
+                    {
+                        whatWasWrong = new WhatWasWrong();
+                        whatWasWrong.idWhatWasWrong = odbcDataReader.GetInt32(0);
+                        whatWasWrong.WhatCode = odbcDataReader.GetString(1);
+                        whatWasWrong.WhatDepartment = odbcDataReader.GetString(2);
+                        whatWasWrong.WhatActive = odbcDataReader.GetInt32(3);
+                        objReturn.Add(whatWasWrong);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logentry = "\n •Error retrieving WhatWasWrong from DB" + ex.Message + timestamp;
+                System.IO.File.AppendAllText(logfilepath, logentry);
+            }
+            return objReturn;
+        }
+        /// <summary> JP - 2/12/24 Adding List to get the how was it fixed combo box codes </summary>
+        /// 
+        public List<HowWasItFixed> RetrieveHowWasItFixed()
+        {
+            List<HowWasItFixed> objReturn = new List<HowWasItFixed>();
+            HowWasItFixed howWasItFixed;
+            string strSQLcall = string.Empty;
+
+            //Set SQL statement
+            strSQLcall = "SELECT id, how_code, department, active FROM upstate_service.how_was_it_fixed WHERE active = 1";
+
+            try
+            {
+                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+                {
+                    conn.Open();
+                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
+                    cmd.Connection = conn;
+                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+                    while (odbcDataReader.Read())
+                    {
+                        howWasItFixed = new HowWasItFixed();
+                        howWasItFixed.idHowWasItFixed = odbcDataReader.GetInt32(0);
+                        howWasItFixed.HowCode = odbcDataReader.GetString(1);
+                        howWasItFixed.HowDepartment = odbcDataReader.GetString(2);
+                        howWasItFixed.HowActive = odbcDataReader.GetInt32(3);
+                        objReturn.Add(howWasItFixed);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logentry = "\n •Error retrieving HowWasItFixed from DB" + ex.Message + timestamp;
+                System.IO.File.AppendAllText(logfilepath, logentry);
+            }
+            return objReturn;
         }
     }
 }

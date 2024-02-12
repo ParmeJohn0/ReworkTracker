@@ -23,6 +23,8 @@ namespace ReworkTracker
             FillEmployeeComboBox();
             DefectComboFill();
             InitialDepartmentFill();
+            WhatWasWrongComboFill();
+            HowWasItFixedComboFill();
             QtyCombo.Items.Add("1");
             QtyCombo.Items.Add("2");
             QtyCombo.Items.Add("3");
@@ -64,35 +66,35 @@ namespace ReworkTracker
         void Min_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
         void Max_Click(object sender, RoutedEventArgs e)
         {
-            //if (WindowState != System.Windows.WindowState.Normal)
-            //{
-            //    WindowState = System.Windows.WindowState.Normal;
-            //    if (WindowState == WindowState.Normal)
-            //    {
+            if (WindowState != System.Windows.WindowState.Normal)
+            {
+                WindowState = System.Windows.WindowState.Normal;
+                if (WindowState == WindowState.Normal)
+                {
 
-            //    }
-            //}
-            //else
-            //{
-            //    WindowState = WindowState.Maximized;
-            //    if (WindowState == WindowState.Maximized)
-            //    {
-            //    }
-            //}
+                }
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+                if (WindowState == WindowState.Maximized)
+                {
+                }
+            }
         }
         void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
         void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             //clear all the fields in the form
             txtJobNumber.Text = "";
-            txtDescription.Text = "";
-            txtDescriptionFixed.Text = "";
             QtyCombo.Text = "";
             TypeCombo.Text = "";
             DepartmentCombo.Text = "";
             EmployeeCombo.Text = "";
             DefectCombo.Text = "";
             txtImprovement.Text = "";
+            HowWasItFixedCombo.SelectedIndex = -1;
+            WhatWasWrongCombo.SelectedIndex = -1;
             JobNumberError.Visibility = Visibility.Hidden;
             DefectRequired.Visibility = Visibility.Hidden;
             DepartmentRequired.Visibility = Visibility.Hidden;
@@ -154,7 +156,7 @@ namespace ReworkTracker
             {
                 TypeRequired.Visibility = Visibility.Hidden;
             }
-            if (string.IsNullOrEmpty(txtDescriptionFixed.Text))
+            if (string.IsNullOrEmpty(HowWasItFixedCombo.Text))
             {
                 HowRequired.Visibility = Visibility.Visible;
             }
@@ -162,7 +164,7 @@ namespace ReworkTracker
             {
                 HowRequired.Visibility = Visibility.Hidden;
             }
-            if (string.IsNullOrEmpty(txtDescription.Text))
+            if (string.IsNullOrEmpty(WhatWasWrongCombo.Text))
             {
                 DescriptionRequired.Visibility = Visibility.Visible;
             }
@@ -174,7 +176,7 @@ namespace ReworkTracker
             //If all the fields are filled out, submit the data to the database
             if (string.IsNullOrEmpty(txtJobNumber.Text) || string.IsNullOrEmpty(DepartmentCombo.Text) 
                 || string.IsNullOrEmpty(EmployeeCombo.Text) || string.IsNullOrEmpty(QtyCombo.Text) || string.IsNullOrEmpty(DefectCombo.Text) 
-                || string.IsNullOrEmpty(TypeCombo.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(txtDescriptionFixed.Text))
+                || string.IsNullOrEmpty(TypeCombo.Text) || string.IsNullOrEmpty(WhatWasWrongCombo.Text) || string.IsNullOrEmpty(HowWasItFixedCombo.Text))
             {
                 //Do nothing
             }
@@ -225,11 +227,11 @@ namespace ReworkTracker
 
                 }
                 //Issue Description
-                waste.issue_description = txtDescription.Text;
+                waste.issue_description = WhatWasWrongCombo.Text;
                 //Improvement Suggestion
                 waste.improvement_suggestion = txtImprovement.Text;
                 //Resolution Description
-                waste.resolution_description = txtDescriptionFixed.Text;
+                waste.resolution_description = HowWasItFixedCombo.Text;
                 //Scrap/Rework/Waste
                 waste.scrap_rework_waste = TypeCombo.Text;
                 //Insert the data into the database
@@ -293,6 +295,31 @@ namespace ReworkTracker
                 DefectCombo.Items.Add(codes.Code);
             }
         }
+        void WhatWasWrongComboFill()
+        {
+            //Return the values from SQLService
+            SQL_Service sqlService = new SQL_Service();
+            sqlService.RetrieveWhatWasWrong();
+
+            foreach (WhatWasWrong whatWasWrong in sqlService.RetrieveWhatWasWrong())
+            {
+                //Add the department to the combobox
+                WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
+            }
+        }
+        void HowWasItFixedComboFill()
+        {
+            //Retrieve the values from SQLService
+            SQL_Service sqlService = new SQL_Service();
+            sqlService.RetrieveHowWasItFixed();
+
+            foreach (HowWasItFixed howWasItFixed in sqlService.RetrieveHowWasItFixed())
+            {
+                //Add the department to the combobox
+                HowWasItFixedCombo.Items.Add(howWasItFixed.HowCode);
+            }
+
+        }
         private void txtJobNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             //Check to see if theres 7 characters, if not , disable the submit button
@@ -352,7 +379,7 @@ namespace ReworkTracker
                 LocationHighlight.Visibility = Visibility.Hidden;
             }
         }            
-            private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if employeerequired is visible, set it to hidden.
             if (EmployeeRequired.Visibility == Visibility.Visible)

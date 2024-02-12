@@ -267,118 +267,295 @@
         </Style>
     </Window.Resources>
 
-    <Grid Height="600" VerticalAlignment="Bottom">
+    <Grid Height="Auto" Width="Auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <ComboBox
-            x:Name="DepartmentCombo"
-            Width="218"
-            Height="43"
-            Margin="293,188,0,0"
+
+        <!--Time Section-->
+        <TextBox
+            Grid.Column="0"
+            Grid.Row="0"
+            x:Name="txtTime"
+            Width="153"
+            Height="29"
+            Margin="2,2,0,0"
+            Padding="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            FontSize="18"
+            HorizontalContentAlignment="Left"
+            VerticalContentAlignment="Center"
+            Background="Transparent"
+            BorderBrush="#4C5152"
+            BorderThickness="0"
+            FontSize="15"
             FontWeight="ExtraLight"
+            Foreground="White"
+            IsEnabled="False"
+            TextWrapping="Wrap" />
+
+        <!--Upstate Logo-->
+        <Image
+            Grid.Column="1"
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
-            SelectionChanged="DepartmentCombo_SelectionChanged"
-            
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
-            <ComboBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </ComboBox.Effect>
-        </ComboBox>
-        <ComboBox
-            x:Name="EmployeeCombo"
-            Width="218"
-            Height="43"
-            Margin="44,188,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SelectionChanged="EmployeeCombo_SelectionChanged"
-            SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
-            <ComboBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </ComboBox.Effect>
-        </ComboBox>
-        <ComboBox
-            x:Name="QtyCombo"
-            Width="218"
-            Height="46"
-            Margin="293,294,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SelectionChanged="QtyCombo_SelectionChanged"
-            SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
-            <ComboBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </ComboBox.Effect>
-        </ComboBox>
-        <Label
-            Width="214"
-            Height="38"
-            Margin="295,257,0,0"
-            HorizontalAlignment="Left"
+            Source="/UpstateDoor_MasterLogo_4c.png"
+            Stretch="Fill"
+            UseLayoutRounding="True" />
+
+        <!--Window Controls Section-->
+        <Button
+            Grid.Column="2"
+            Grid.Row="0"
+            Width="15"
+            Height="15"
+            Margin="0,2,2,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
-            Content="Qty"
-            FontSize="18"
+            VerticalContentAlignment="Center"
+            Click="Close_Click"
+            Content="X"
+            Foreground="White"
+            Style="{StaticResource TopThreeTheme}" />
+        <Button
+            Grid.Column="2"
+            Grid.Row="0"
+            Width="15"
+            Height="15"
+            Margin="0,2,17,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="Max_Click"
+            Content="❐"
+            Foreground="White"
+            Style="{StaticResource TopThreeTheme}" />
+        <Button
+            Grid.Column="2"
+            Grid.Row="0"
+            Width="15"
+            Height="15"
+            Margin="0,2,32,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="Min_Click"
+            Content="_"
+            Foreground="White"
+            Style="{StaticResource TopThreeTheme}" />
+
+        <!--Location Section-->
+        <Rectangle
+            Grid.Column="1"
+            Grid.Row="2"
+            x:Name="LocationHighlight"
+            Margin="15"
+            StrokeThickness="3"
+            Stroke="Red" />
+        <RadioButton
+            Grid.Column="1"
+            Grid.Row="2"
+            x:Name="WarsawRadio"
+            Width="100"
+            Height="50"
+            Margin="0,0,100,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Checked="WarsawRadioButton_Checked"
+            Content="Warsaw"
+            FontSize="15"
             FontWeight="ExtraLight"
-            Foreground="White" />
+            GroupName="Facility"
+            Style="{StaticResource StaticMenuButton}"/>
+        <RadioButton
+            Grid.Column="1"
+            Grid.Row="2"
+            x:Name="CastileRadio"
+            Width="100"
+            Height="50"
+            Margin="100,0,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Checked="CastileRadioButton_Checked_1"
+            Content="Castile"
+            FontSize="15"
+            FontWeight="ExtraLight"
+            GroupName="Facility"
+            Style="{StaticResource StaticMenuButton}" />
+
+        <!--Employee Section-->
         <Label
-            Width="218"
+            Grid.Row="4"
+            Width="220"
             Height="36"
-            Margin="44,152,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="Employee"
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White" />
+        <ComboBox
+            Grid.Row="4"
+            x:Name="EmployeeCombo"
+            Width="220"
+            Height="40"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SelectionChanged="EmployeeCombo_SelectionChanged"
+            SnapsToDevicePixels="True"
+            Style="{StaticResource ComboBoxFlatStyle}" >
+            <ComboBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </ComboBox.Effect>
+        </ComboBox>
         <Label
-            Width="214"
+            Grid.Row="4"
+            x:Name="EmployeeRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red"/>
+
+        <!--Department Section-->
+        <Label
+            Grid.Column="1"
+            Grid.Row="4"
+            Width="220"
             Height="36"
-            Margin="295,152,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="Department"
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White" />
+        <ComboBox
+            Grid.Column="1"
+            Grid.Row="4"
+            x:Name="DepartmentCombo"
+            Width="220"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SelectionChanged="DepartmentCombo_SelectionChanged"
+            SnapsToDevicePixels="True"
+            Style="{StaticResource ComboBoxFlatStyle}" >
+            <ComboBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </ComboBox.Effect>
+        </ComboBox>
         <Label
-            Width="216"
-            Height="35"
-            Margin="46,259,0,0"
-            HorizontalAlignment="Left"
+            Grid.Column="1"
+            Grid.Row="4"
+            x:Name="DepartmentRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+
+        <!--Defect Code Section-->
+        <Label
+            Grid.Column="2"
+            Grid.Row="4"
+            Width="220"
+            Height="36"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Defect Code"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            Foreground="White" />
+        <ComboBox
+            Grid.Column="2"
+            Grid.Row="4"
+            x:Name="DefectCombo"
+            Width="220"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SelectionChanged="DefectCombo_SelectionChanged"
+            SnapsToDevicePixels="True"
+            Style="{StaticResource ComboBoxFlatStyle}" >
+            <ComboBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </ComboBox.Effect>
+        </ComboBox>
+        <Label
+            Grid.Column="2"
+            Grid.Row="4"
+            x:Name="DefectRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+
+        <!--Type Section-->
+        <Label
+            Grid.Row="6"
+            Width="220"
+            Height="36"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="Type"
@@ -386,12 +563,12 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <ComboBox
+            Grid.Row="6"
             x:Name="TypeCombo"
-            Width="218"
-            Height="46"
-            Margin="44,294,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Width="220"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             FontSize="18"
             FontWeight="ExtraLight"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
@@ -407,13 +584,90 @@
                     ShadowDepth="7" />
             </ComboBox.Effect>
         </ComboBox>
+        <Label
+            Grid.Row="6"
+            x:Name="TypeRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+
+        <!--Qty Section-->
+        <Label
+            Grid.Column="1"
+            Grid.Row="6"
+            Width="220"
+            Height="36"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Qty"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            Foreground="White" />
+        <ComboBox
+            Grid.Column="1"
+            Grid.Row="6"
+            x:Name="QtyCombo"
+            Width="220"
+            Height="44"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SelectionChanged="QtyCombo_SelectionChanged"
+            SnapsToDevicePixels="True"
+            Style="{StaticResource ComboBoxFlatStyle}" >
+            <ComboBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </ComboBox.Effect>
+        </ComboBox>
+        <Label
+            Grid.Column="1"
+            Grid.Row="6"
+            x:Name="QtyRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+
+        <!--Job Number Section-->
+        <Label
+            Grid.Column="2"
+            Grid.Row="6"
+            Width="220"
+            Height="36"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            Content="Job Number"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            Foreground="White" />
         <TextBox
+            Grid.Column="2"
+            Grid.Row="6"
             x:Name="txtJobNumber"
             Width="220"
             Height="45"
-            Margin="538,296,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#FF242829"
@@ -427,8 +681,7 @@
             Text=""
             TextChanged="txtJobNumber_TextChanged"
             TextWrapping="Wrap"
-            UseLayoutRounding="True">
-
+            UseLayoutRounding="True" >
             <TextBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -438,68 +691,52 @@
             </TextBox.Effect>
         </TextBox>
         <Label
+            Grid.Column="2"
+            Grid.Row="6"
+            x:Name="JobNumberError"
             Width="220"
-            Height="36"
-            Margin="538,259,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
             HorizontalContentAlignment="Center"
-            Content="Job Number"
-            FontSize="18"
+            Content="Requires 7 Digits"
+            FontSize="10"
             FontWeight="ExtraLight"
-            Foreground="White" />
-        <Button
-            x:Name="SubmitButton"
-            Margin="549,556,134,10"
-            Click="SubmitButton_Click"
-            Content="Submit"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            Style="{StaticResource MainButtonTheme}" />
-        <Button
-            x:Name="ClearButton"
-            Margin="425,556,260,10"
-            Click="ClearButton_Click"
-            Content="Clear"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            Style="{StaticResource MainButtonTheme}" />
-        <Button
-            x:Name="CloseButton"
-            Margin="675,556,10,10"
-            Click="CloseButton_Click"
-            Content="Close"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            Style="{StaticResource MainButtonTheme}" />
+            Foreground="Red" />
+
+        <!--What Was Wrong Section-->
         <Label
+            Grid.Column="0"
+            Grid.Row="8"
             Width="220"
             Height="36"
-            Margin="538,152,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
-            Content="Defect Code"
+            Content="What Was Wrong?"
             FontSize="18"
             FontWeight="ExtraLight"
-            Foreground="White" />
+            Foreground="White" Grid.RowSpan="3" />
         <ComboBox
-            x:Name="DefectCombo"
+            Grid.Column="0"
+            Grid.Row="8"
+            x:Name="WhatWasWrongCombo"
             Width="220"
-            Height="43"
-            Margin="538,188,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontSize="18"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="#FF242829"
+            BorderBrush="#4C5152"
+            BorderThickness="0"
+            FontSize="16"
             FontWeight="ExtraLight"
+            Foreground="White"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
-            SelectionChanged="DefectCombo_SelectionChanged"
             SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}">
+            Text=""
+            Style="{StaticResource ComboBoxFlatStyle}"
+            UseLayoutRounding="True" >
             <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
@@ -508,308 +745,150 @@
                     ShadowDepth="7" />
             </ComboBox.Effect>
         </ComboBox>
-        <TextBox
-            x:Name="txtDescriptionFixed"
-            Width="218"
-            Height="124"
-            Margin="293,402,0,0"
-            Padding="5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FF242829"
-            BorderBrush="#4C5152"
-            BorderThickness="0"
-            FontSize="16"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SnapsToDevicePixels="True"
-            Text=""
-            TextChanged="txtDescriptionFixed_TextChanged"
-            TextWrapping="Wrap"
-            UseLayoutRounding="True">
-            <TextBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </TextBox.Effect>
-        </TextBox>
         <Label
-            Width="218"
+            Grid.Column="0"
+            Grid.Row="8"
+            x:Name="DescriptionRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+
+        <!--How Was It Fixed Section-->
+        <Label
+            Grid.Column="1"
+            Grid.Row="8"
+            Width="220"
             Height="36"
-            Margin="293,366,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="How Was it Fixed?"
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White" />
-        <TextBox
-            x:Name="txtDescription"
-            Width="216"
-            Height="124"
-            Margin="46,402,0,0"
-            Padding="5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FF242829"
-            BorderBrush="#4C5152"
-            BorderThickness="0"
-            FontSize="16"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SnapsToDevicePixels="True"
-            Text=""
-            TextChanged="txtDescription_TextChanged"
-            TextWrapping="Wrap"
-            UseLayoutRounding="True">
-            <TextBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </TextBox.Effect>
-        </TextBox>
-        <Label
-            Width="214"
-            Height="36"
-            Margin="48,366,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="What Was Wrong?"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White" />
-        <TextBox
-            x:Name="txtTime"
-            Width="153"
-            Height="29"
-            Margin="1,1,0,0"
-            Padding="5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Left"
-            VerticalContentAlignment="Center"
-            Background="Transparent"
-            BorderBrush="#4C5152"
-            BorderThickness="0"
-            FontSize="15"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            IsEnabled="False"
-            TextWrapping="Wrap" />
-        <Button
-            Margin="776,1,1,570"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Click="Close_Click"
-            Content="X"
-            Foreground="White"
-            Style="{StaticResource TopThreeTheme}" />
-        <Button
-            Margin="728,1,47,570"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Click="Min_Click"
-            Content="_"
-            Foreground="White"
-            Style="{StaticResource TopThreeTheme}" />
-        <Button
-            Margin="752,1,23,570"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Click="Max_Click"
-            Content="❐"
-            Foreground="White"
-            Style="{StaticResource TopThreeTheme}" />
-        <Image
-            Width="280"
-            Height="98"
-            Margin="0,-7,0,0"
+        <ComboBox
+            Grid.Column="1"
+            Grid.Row="8"
+            x:Name="HowWasItFixedCombo"
+            Width="220"
+            Height="40"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SnapsToDevicePixels="True"
-            Source="/UpstateDoor_MasterLogo_4c.png"
-            Stretch="Fill"
-            UseLayoutRounding="True" />
-        <TextBox
-            x:Name="txtImprovement"
-            Width="220"
-            Height="124"
-            Margin="538,402,0,0"
-            Padding="5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Background="#FF242829"
             BorderBrush="#4C5152"
             BorderThickness="0"
             FontSize="16"
+            FontWeight="ExtraLight"
             Foreground="White"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
             SnapsToDevicePixels="True"
             Text=""
-            TextWrapping="Wrap"
-            UseLayoutRounding="True">
-            <TextBox.Effect>
+            Style="{StaticResource ComboBoxFlatStyle}"
+            UseLayoutRounding="True" >
+            <ComboBox.Effect>
                 <DropShadowEffect
                     BlurRadius="7"
                     Opacity="0.3"
                     RenderingBias="Quality"
                     ShadowDepth="7" />
-            </TextBox.Effect>
-        </TextBox>
+            </ComboBox.Effect>
+        </ComboBox>
         <Label
+            Grid.Column="1"
+            Grid.Row="8"
+            x:Name="HowRequired"
+            Width="220"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            Content="Required"
+            FontSize="10"
+            FontWeight="ExtraLight"
+            Foreground="Red" />
+
+        <!--Improvement Section-->
+        <Label
+            Grid.Column="2"
+            Grid.Row="8"
             Width="220"
             Height="36"
-            Margin="538,366,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="Improvement Suggestion"
             FontSize="18"
             FontWeight="ExtraLight"
-            Foreground="White" />
-        <Label
-            x:Name="JobNumberError"
-            Width="218"
-            Height="28"
-            Margin="540,340,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Requires 7 Digits"
-            FontSize="10"
+            Foreground="White" Grid.RowSpan="3" />
+        <TextBox
+            Grid.Column="2"
+            Grid.Row="8"
+            x:Name="txtImprovement"
+            Width="220"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="#FF242829"
+            BorderBrush="#4C5152"
+            BorderThickness="0"
+            FontSize="16"
+            Foreground="White"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
+            Text=""
+            TextWrapping="Wrap"
+            UseLayoutRounding="True" >
+            <TextBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </TextBox.Effect>
+        </TextBox>
+
+        <!--Clear Submit Close Section-->
+        <Button
+            Grid.Column="1"
+            Grid.Row="10"
+            x:Name="SubmitButton"
+            Margin="10"
+            Click="SubmitButton_Click"
+            Content="Submit"
+            FontSize="18"
             FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="DescriptionRequired"
-            Width="214"
-            Height="28"
-            Margin="48,526,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
+            Foreground="White"
+            Style="{StaticResource MainButtonTheme}" />
+        <Button
+            Grid.Column="0"
+            Grid.Row="10"
+            x:Name="ClearButton"
+            Margin="10"
+            Click="ClearButton_Click"
+            Content="Clear"
+            FontSize="18"
             FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="HowRequired"
-            Width="214"
-            Height="28"
-            Margin="295,526,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
+            Foreground="White"
+            Style="{StaticResource MainButtonTheme}" />
+        <Button
+            Grid.Column="2"
+            Grid.Row="10"
+            x:Name="CloseButton"
+            Margin="10"
+            Click="CloseButton_Click"
+            Content="Close"
+            FontSize="18"
             FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="TypeRequired"
-            Width="216"
-            Height="28"
-            Margin="46,340,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="QtyRequired"
-            Width="218"
-            Height="28"
-            Margin="293,340,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="EmployeeRequired"
-            Width="216"
-            Height="28"
-            Margin="46,231,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="DepartmentRequired"
-            Width="218"
-            Height="28"
-            Margin="293,231,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
-        <Label
-            x:Name="DefectRequired"
-            Width="218"
-            Height="28"
-            Margin="540,231,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
-        <RadioButton
-            x:Name="WarsawRadio"
-            Width="96"
-            Height="43"
-            Margin="306,96,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Checked="WarsawRadioButton_Checked"
-            Content="Warsaw"
-            FontSize="15"
-            FontWeight="ExtraLight"
-            GroupName="Facility"
-            Style="{StaticResource StaticMenuButton}" />
-        <RadioButton
-            x:Name="CastileRadio"
-            Width="95"
-            Height="43"
-            Margin="402,96,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Checked="CastileRadioButton_Checked_1"
-            Content="Castile"
-            FontSize="15"
-            FontWeight="ExtraLight"
-            GroupName="Facility"
-            Style="{StaticResource StaticMenuButton}" />
-        <Rectangle 
-            x:Name="LocationHighlight"
-            HorizontalAlignment="Left" 
-            Height="49" 
-            Margin="303,93,0,0" 
-            StrokeThickness="3"
-            Stroke="Red" 
-            VerticalAlignment="Top" 
-            Width="197"/>
+            Foreground="White"
+            Style="{StaticResource MainButtonTheme}" />
+
     </Grid>
 </Window>
