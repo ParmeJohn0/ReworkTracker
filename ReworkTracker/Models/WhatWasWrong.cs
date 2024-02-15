@@ -12,5 +12,6 @@ namespace ReworkTracker.Models
         public string WhatCode { get; set; }
         public string WhatDepartment { get; set; }
         public int WhatActive { get; set; }
+        public string WhatCategory { get; set; }    
     }
 }

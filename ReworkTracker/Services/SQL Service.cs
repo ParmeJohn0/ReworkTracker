@@ -226,7 +226,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT id, what_code, department, active FROM upstate_service.what_was_wrong WHERE active = 1";
+            strSQLcall = "SELECT id, what_code, dep_category, active FROM upstate_service.what_was_wrong WHERE active = 1";
 
             try
             {
@@ -263,7 +263,7 @@ namespace ReworkTracker.Services
             string strSQLcall = string.Empty;
 
             //Set SQL statement
-            strSQLcall = "SELECT id, how_code, department, active FROM upstate_service.how_was_it_fixed WHERE active = 1";
+            strSQLcall = "SELECT id, how_code, dep_category, active FROM upstate_service.how_was_it_fixed WHERE active = 1";
 
             try
             {

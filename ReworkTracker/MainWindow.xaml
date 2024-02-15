@@ -839,6 +839,8 @@
             BorderBrush="#4C5152"
             BorderThickness="0"
             FontSize="16"
+            Padding="5"
+            VerticalContentAlignment="Center"
             Foreground="White"
             RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.ClearTypeHint="Enabled"
