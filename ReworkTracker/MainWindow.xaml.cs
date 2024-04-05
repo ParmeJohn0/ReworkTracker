@@ -1,6 +1,10 @@
-﻿using ReworkTracker.Models;
+﻿using Google.Protobuf.WellKnownTypes;
+using Microsoft.Extensions.Logging.Abstractions;
+using ReworkTracker.Models;
 using ReworkTracker.Services;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.Odbc;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -297,15 +301,15 @@ namespace ReworkTracker
         }
         void WhatWasWrongComboFill()
         {
-            //Return the values from SQLService
-            SQL_Service sqlService = new SQL_Service();
-            sqlService.RetrieveWhatWasWrong();
+            ////Return the values from SQLService
+            //SQL_Service sqlService = new SQL_Service();
+            //sqlService.RetrieveWhatWasWrong();
 
-            foreach (WhatWasWrong whatWasWrong in sqlService.RetrieveWhatWasWrong())
-            {
-                //Add the department to the combobox
-                WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
-            }
+            //foreach (WhatWasWrong whatWasWrong in sqlService.RetrieveWhatWasWrong())
+            //{
+            //    //Add the department to the combobox
+            //    WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
+            //}
         }
         void HowWasItFixedComboFill()
         {
@@ -378,7 +382,86 @@ namespace ReworkTracker
             {
                 LocationHighlight.Visibility = Visibility.Hidden;
             }
-        }            
+
+            ////Filter the whatwaswrong combo, based off the department selected in the department combo.
+            //if (DepartmentCombo.SelectedItem != null)
+            //{
+            //    WhatWasWrongCombo.Items.Clear();
+            //    SQL_Service sqlService = new SQL_Service();
+            //    foreach (WhatWasWrong whatWasWrong in sqlService.RetrieveWhatWasWrong())
+            //    {
+            //        if (string.Equals(whatWasWrong.WhatDepartment, DepartmentCombo.SelectedItem.ToString()))
+            //        {
+            //            WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
+            //        }
+            //    }
+            //}
+
+            //Clear the whatwaswrong combo
+            WhatWasWrongCombo.Items.Clear();
+
+            //Dont run the function if the department combo is empty
+            if (DepartmentCombo.SelectedItem == null)
+            {
+                return;
+            }
+            else
+            {
+                RetrieveWhatWasWrong();
+
+                //fill the whatwaswrong combo with the values returned from the RetrieveWhatWasWrong function.
+                foreach (WhatWasWrong whatWasWrong in RetrieveWhatWasWrong())
+                {
+                    WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
+                }
+
+            }
+        }
+        public List<WhatWasWrong> RetrieveWhatWasWrong()
+        {
+            List<WhatWasWrong> objReturn = new List<WhatWasWrong>();
+            WhatWasWrong whatWasWrong;
+            string strSQLcall = string.Empty;
+
+            //Set SQL statement, add a where clause that checks the dep_cateogry for the department selected in the DepartmentCombo. 
+            // Add the department that they selected at the end of the SQL statement.
+            strSQLcall = "SELECT what_was_wrong.what_code FROM what_was_wrong INNER JOIN departments ON what_was_wrong.dep_category = departments.category where departments.Name = ";
+            //Add the department that they selected at the end of the SQL statement. Set that value to the department selected in the DepartmentCombo.
+            strSQLcall = strSQLcall + "'" + DepartmentCombo.SelectedItem.ToString() + "' and Facility = ";
+            //If the WarsawRadioButton is checked, set the facility to Warsaw. If the CastileRadioButton is checked, set the facility to Castile.
+            if (WarsawRadio.IsChecked == true)
+            {
+                strSQLcall = strSQLcall + "'Warsaw'";
+            }
+            else if (CastileRadio.IsChecked == true)
+            {
+                strSQLcall = strSQLcall + "'Castile'";
+            }
+
+            try
+            {
+                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+                {
+                    conn.Open();
+                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
+                    cmd.Connection = conn;
+                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+                    while (odbcDataReader.Read())
+                    {
+                        whatWasWrong = new WhatWasWrong();
+                        whatWasWrong.WhatCode = odbcDataReader.GetString(0);
+                        objReturn.Add(whatWasWrong);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+               // logentry = "\n •Error retrieving WhatWasWrong from DB" + ex.Message + timestamp;
+                // System.IO.File.AppendAllText(logfilepath, logentry);
+            }
+            return objReturn;
+        }
+
         private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if employeerequired is visible, set it to hidden.
@@ -407,11 +490,16 @@ namespace ReworkTracker
         {
             DepartmentCombo.Items.Clear();
             WarsawDepartmentComboFill();
+            HowWasItFixedCombo.Items.Clear();
+            
         }
         private void CastileRadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
             DepartmentCombo.Items.Clear();
             CastileDepartmentComboFill();
+            HowWasItFixedCombo.Items.Clear();
         }
+
+
     }
 }
