@@ -413,30 +413,10 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
-            Content="Employee"
+            Content="Reporting Area"
             FontSize="18"
             FontWeight="ExtraLight"
             Foreground="White" />
-        <ComboBox
-            Grid.Row="4"
-            x:Name="EmployeeCombo"
-            Width="220"
-            Height="40"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SelectionChanged="EmployeeCombo_SelectionChanged"
-            SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}" >
-            <ComboBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </ComboBox.Effect>
-        </ComboBox>
         <Label
             Grid.Row="4"
             x:Name="EmployeeRequired"
@@ -451,54 +431,6 @@
             Foreground="Red"/>
 
         <!--Department Section-->
-        <Label
-            Grid.Column="1"
-            Grid.Row="4"
-            Width="220"
-            Height="36"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Department"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White" />
-        <ComboBox
-            Grid.Column="1"
-            Grid.Row="4"
-            x:Name="DepartmentCombo"
-            Width="220"
-            Height="40"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SelectionChanged="DepartmentCombo_SelectionChanged"
-            SnapsToDevicePixels="True"
-            Style="{StaticResource ComboBoxFlatStyle}" >
-            <ComboBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </ComboBox.Effect>
-        </ComboBox>
-        <Label
-            Grid.Column="1"
-            Grid.Row="4"
-            x:Name="DepartmentRequired"
-            Width="220"
-            Height="25"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
 
         <!--Defect Code Section-->
         <Label
@@ -599,8 +531,7 @@
 
         <!--Qty Section-->
         <Label
-            Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="8"
             Width="220"
             Height="36"
             HorizontalAlignment="Center"
@@ -611,8 +542,7 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <ComboBox
-            Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="8"
             x:Name="QtyCombo"
             Width="220"
             Height="44"
@@ -634,18 +564,17 @@
             </ComboBox.Effect>
         </ComboBox>
         <Label
-            Grid.Column="1"
-            Grid.Row="6"
+            Grid.Row="8"
             x:Name="QtyRequired"
             Width="220"
             Height="25"
             HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="Required"
             FontSize="10"
             FontWeight="ExtraLight"
-            Foreground="Red" />
+            Foreground="Red" Margin="0,73,0,0" />
 
         <!--Job Number Section-->
         <Label
@@ -705,63 +634,10 @@
             Foreground="Red" />
 
         <!--What Was Wrong Section-->
-        <Label
-            Grid.Column="0"
-            Grid.Row="8"
-            Width="220"
-            Height="36"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="What Was Wrong?"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White" Grid.RowSpan="3" />
-        <ComboBox
-            Grid.Column="0"
-            Grid.Row="8"
-            x:Name="WhatWasWrongCombo"
-            Width="220"
-            Height="40"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Background="#FF242829"
-            BorderBrush="#4C5152"
-            BorderThickness="0"
-            FontSize="16"
-            FontWeight="ExtraLight"
-            Foreground="White"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SnapsToDevicePixels="True"
-            Text=""
-            Style="{StaticResource ComboBoxFlatStyle}"
-            UseLayoutRounding="True" >
-            <ComboBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </ComboBox.Effect>
-        </ComboBox>
-        <Label
-            Grid.Column="0"
-            Grid.Row="8"
-            x:Name="DescriptionRequired"
-            Width="220"
-            Height="25"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            HorizontalContentAlignment="Center"
-            Content="Required"
-            FontSize="10"
-            FontWeight="ExtraLight"
-            Foreground="Red" />
 
         <!--How Was It Fixed Section-->
         <Label
-            Grid.Column="1"
+            Grid.Column="2"
             Grid.Row="8"
             Width="220"
             Height="36"
@@ -773,7 +649,7 @@
             FontWeight="ExtraLight"
             Foreground="White" />
         <ComboBox
-            Grid.Column="1"
+            Grid.Column="2"
             Grid.Row="8"
             x:Name="HowWasItFixedCombo"
             Width="220"
@@ -801,61 +677,20 @@
             </ComboBox.Effect>
         </ComboBox>
         <Label
-            Grid.Column="1"
+            Grid.Column="2"
             Grid.Row="8"
             x:Name="HowRequired"
             Width="220"
             Height="25"
             HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             Content="Required"
             FontSize="10"
             FontWeight="ExtraLight"
-            Foreground="Red" />
+            Foreground="Red" Margin="0,72,0,0" />
 
         <!--Improvement Section-->
-        <Label
-            Grid.Column="2"
-            Grid.Row="8"
-            Width="220"
-            Height="36"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            Content="Improvement Suggestion"
-            FontSize="18"
-            FontWeight="ExtraLight"
-            Foreground="White" Grid.RowSpan="3" />
-        <TextBox
-            Grid.Column="2"
-            Grid.Row="8"
-            x:Name="txtImprovement"
-            Width="220"
-            Height="40"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Background="#FF242829"
-            BorderBrush="#4C5152"
-            BorderThickness="0"
-            FontSize="16"
-            Padding="5"
-            VerticalContentAlignment="Center"
-            Foreground="White"
-            RenderOptions.BitmapScalingMode="NearestNeighbor"
-            RenderOptions.ClearTypeHint="Enabled"
-            SnapsToDevicePixels="True"
-            Text=""
-            TextWrapping="Wrap"
-            UseLayoutRounding="True" >
-            <TextBox.Effect>
-                <DropShadowEffect
-                    BlurRadius="7"
-                    Opacity="0.3"
-                    RenderingBias="Quality"
-                    ShadowDepth="7" />
-            </TextBox.Effect>
-        </TextBox>
 
         <!--Clear Submit Close Section-->
         <Button
@@ -891,6 +726,27 @@
             FontWeight="ExtraLight"
             Foreground="White"
             Style="{StaticResource MainButtonTheme}" />
+        <ComboBox
+            Grid.Row="4"
+            x:Name="ReportingAreaCombo"
+            Width="220"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontSize="18"
+            FontWeight="ExtraLight"
+            RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.ClearTypeHint="Enabled"
+            SnapsToDevicePixels="True"
+            Style="{StaticResource ComboBoxFlatStyle}" Margin="0,41,0,0" >
+            <ComboBox.Effect>
+                <DropShadowEffect
+                    BlurRadius="7"
+                    Opacity="0.3"
+                    RenderingBias="Quality"
+                    ShadowDepth="7" />
+            </ComboBox.Effect>
+        </ComboBox>
 
     </Grid>
 </Window>

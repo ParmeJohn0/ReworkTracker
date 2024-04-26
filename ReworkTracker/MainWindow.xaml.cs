@@ -24,7 +24,6 @@ namespace ReworkTracker
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
-            FillEmployeeComboBox();
             DefectComboFill();
             InitialDepartmentFill();
             WhatWasWrongComboFill();
@@ -39,20 +38,26 @@ namespace ReworkTracker
             QtyCombo.Items.Add("8");
             QtyCombo.Items.Add("9");
             QtyCombo.Items.Add("10");
-            TypeCombo.Items.Add("Scrap");
-            TypeCombo.Items.Add("Rework");
-            TypeCombo.Items.Add("Waste");
+            QtyCombo.Items.Add("11");
+            QtyCombo.Items.Add("12");
+            QtyCombo.Items.Add("13");
+            QtyCombo.Items.Add("14");
+            QtyCombo.Items.Add("15");
+            QtyCombo.Items.Add("16");
+            QtyCombo.Items.Add("17");
+            QtyCombo.Items.Add("18");
+            QtyCombo.Items.Add("19");
+            QtyCombo.Items.Add("20");
+            TypeCombo.Items.Add("Repair");
+            TypeCombo.Items.Add("Replace");
             //user has to input 7 characters into the job number field
             txtJobNumber.MaxLength = 7;
             JobNumberError.Visibility = Visibility.Hidden;
             DefectRequired.Visibility = Visibility.Hidden;
-            DepartmentRequired.Visibility = Visibility.Hidden;
             EmployeeRequired.Visibility = Visibility.Hidden;
             QtyRequired.Visibility = Visibility.Hidden;
             TypeRequired.Visibility = Visibility.Hidden;
-            DescriptionRequired.Visibility = Visibility.Hidden;
             HowRequired.Visibility = Visibility.Hidden;
-            DescriptionRequired.Visibility = Visibility.Hidden;
             LocationHighlight.Visibility = Visibility.Hidden;
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -93,21 +98,14 @@ namespace ReworkTracker
             txtJobNumber.Text = "";
             QtyCombo.Text = "";
             TypeCombo.Text = "";
-            DepartmentCombo.Text = "";
-            EmployeeCombo.Text = "";
             DefectCombo.Text = "";
-            txtImprovement.Text = "";
             HowWasItFixedCombo.SelectedIndex = -1;
-            WhatWasWrongCombo.SelectedIndex = -1;
             JobNumberError.Visibility = Visibility.Hidden;
             DefectRequired.Visibility = Visibility.Hidden;
-            DepartmentRequired.Visibility = Visibility.Hidden;
             EmployeeRequired.Visibility = Visibility.Hidden;
             QtyRequired.Visibility = Visibility.Hidden;
             TypeRequired.Visibility = Visibility.Hidden;
-            DescriptionRequired.Visibility = Visibility.Hidden;
             HowRequired.Visibility = Visibility.Hidden;
-            DescriptionRequired.Visibility = Visibility.Hidden;
         }
         void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -119,22 +117,6 @@ namespace ReworkTracker
             else
             {
                 JobNumberError.Visibility = Visibility.Hidden;
-            }
-            if (string.IsNullOrEmpty(DepartmentCombo.Text))
-            {
-                DepartmentRequired.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                DepartmentRequired.Visibility = Visibility.Hidden;
-            }
-            if (string.IsNullOrEmpty(EmployeeCombo.Text))
-            {
-                EmployeeRequired.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                EmployeeRequired.Visibility = Visibility.Hidden;
             }
             if (string.IsNullOrEmpty(QtyCombo.Text))
             {
@@ -168,19 +150,11 @@ namespace ReworkTracker
             {
                 HowRequired.Visibility = Visibility.Hidden;
             }
-            if (string.IsNullOrEmpty(WhatWasWrongCombo.Text))
-            {
-                DescriptionRequired.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                DescriptionRequired.Visibility = Visibility.Hidden;
-            }
 
             //If all the fields are filled out, submit the data to the database
-            if (string.IsNullOrEmpty(txtJobNumber.Text) || string.IsNullOrEmpty(DepartmentCombo.Text) 
-                || string.IsNullOrEmpty(EmployeeCombo.Text) || string.IsNullOrEmpty(QtyCombo.Text) || string.IsNullOrEmpty(DefectCombo.Text) 
-                || string.IsNullOrEmpty(TypeCombo.Text) || string.IsNullOrEmpty(WhatWasWrongCombo.Text) || string.IsNullOrEmpty(HowWasItFixedCombo.Text))
+            if (string.IsNullOrEmpty(txtJobNumber.Text)
+            || string.IsNullOrEmpty(QtyCombo.Text) || string.IsNullOrEmpty(DefectCombo.Text)
+            || string.IsNullOrEmpty(TypeCombo.Text) || string.IsNullOrEmpty(HowWasItFixedCombo.Text))
             {
                 //Do nothing
             }
@@ -192,31 +166,14 @@ namespace ReworkTracker
                 //DateTimeNow
                 waste.entry_date = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
                 //Department
-                foreach (WarsawDepartments department in sqlService.RetrieveActiveWarsawDepartments())
-                {
-                    if (string.Equals(department.Name, DepartmentCombo.Text))
-                    {
-                        waste.department_id = department.iddepartments;
-                    }
+                //foreach (ReportingArea department in sqlService.RetrieveActiveWarsawDepartments())
+                //{
+                //    if (string.Equals(department.Name, ReportingAreaCombo.Text))
+                //    {
+                //        waste.department_id = department.iddepartments;
+                //    }
 
-                }
-                foreach (CastileDepartments department in sqlService.RetrieveActiveCastileDepartments())
-                {
-                    if (string.Equals(department.Name, DepartmentCombo.Text))
-                    {
-                        waste.department_id = department.iddepartments;
-                    }
-
-                }
-                //Employee
-                foreach (Employees employee in sqlService.RetrieveActiveEmployees())
-                {
-                    if (string.Equals(employee.FirstName + " " + employee.LastName, EmployeeCombo.Text))
-                    {
-                        waste.employee_id = employee.idEmployees;
-                    }
-
-                }
+                //}
                 //Job Number
                 waste.job_number = txtJobNumber.Text;
                 //Part Quantity
@@ -230,10 +187,6 @@ namespace ReworkTracker
                     }
 
                 }
-                //Issue Description
-                waste.issue_description = WhatWasWrongCombo.Text;
-                //Improvement Suggestion
-                waste.improvement_suggestion = txtImprovement.Text;
                 //Resolution Description
                 waste.resolution_description = HowWasItFixedCombo.Text;
                 //Scrap/Rework/Waste
@@ -246,46 +199,30 @@ namespace ReworkTracker
             }
 
         }
-        //Function to fill the employee combobox
-        void FillEmployeeComboBox()
-        {
-            //Return the values from SQLService
-            SQL_Service sqlService = new SQL_Service();
-            sqlService.RetrieveActiveEmployees();
-            foreach (Employees employee in sqlService.RetrieveActiveEmployees())
-            {
-                //Add the employee to the combobox
-                EmployeeCombo.Items.Add(employee.FirstName + " " + employee.LastName);
-            }
-        }
-        //DS - At start 
+        //DS - At start
         void InitialDepartmentFill()
         {
-            DepartmentCombo.Items.Add("Choose Location First");          
+            ReportingAreaCombo.Items.Add("Choose Location First");
         }
-        void WarsawDepartmentComboFill()
+        void ReportingAreaComboFill()
         {
-            //Return the values from SQLService
-            SQL_Service sqlService = new SQL_Service();
-            sqlService.RetrieveActiveWarsawDepartments();
+            //Add the departments to the combobox
+            ReportingAreaCombo.Items.Add("Assembly");
+            ReportingAreaCombo.Items.Add("Beamsaw");
+            ReportingAreaCombo.Items.Add("Boring and Shaping");
+            ReportingAreaCombo.Items.Add("CNC 5 Axis");
+            ReportingAreaCombo.Items.Add("CNC Door");
+            ReportingAreaCombo.Items.Add("CNC Jamb");
+            ReportingAreaCombo.Items.Add("Customs");
+            ReportingAreaCombo.Items.Add("Mill");
+            ReportingAreaCombo.Items.Add("Prefinish");
+            ReportingAreaCombo.Items.Add("Prehang");
+            ReportingAreaCombo.Items.Add("Sanding");
+            ReportingAreaCombo.Items.Add("SDL/TDL");
+            ReportingAreaCombo.Items.Add("Shipping");
+            ReportingAreaCombo.Items.Add("Stavecore");
+            ReportingAreaCombo.Items.Add("Veneer");
 
-            foreach (WarsawDepartments department in sqlService.RetrieveActiveWarsawDepartments())
-            {
-                //Add the department to the combobox
-                DepartmentCombo.Items.Add(department.Name);
-            }
-        }
-        void CastileDepartmentComboFill()
-        {
-            //Return the values from SQLService
-            SQL_Service sqlService = new SQL_Service();
-            sqlService.RetrieveActiveCastileDepartments();
-
-            foreach (CastileDepartments department in sqlService.RetrieveActiveCastileDepartments())
-            {
-                //Add the department to the combobox
-                DepartmentCombo.Items.Add(department.Name);
-            }
         }
         void DefectComboFill()
         {
@@ -367,54 +304,15 @@ namespace ReworkTracker
                 DefectRequired.Visibility = Visibility.Hidden;
             }
         }
-        private void DepartmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ReportingAreaCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if departmentrequired is visible, set it to hidden.
-            if (DepartmentRequired.Visibility == Visibility.Visible)
-            {
-                DepartmentRequired.Visibility = Visibility.Hidden;
-            }
-            if ((DepartmentCombo.SelectedItem != null) && (DepartmentCombo.SelectedItem.ToString() == "Choose Location First"))
+            if ((ReportingAreaCombo.SelectedItem != null) && (ReportingAreaCombo.SelectedItem.ToString() == "Choose Location First"))
             {
                 LocationHighlight.Visibility = Visibility.Visible;
             }
             else
             {
                 LocationHighlight.Visibility = Visibility.Hidden;
-            }
-
-            ////Filter the whatwaswrong combo, based off the department selected in the department combo.
-            //if (DepartmentCombo.SelectedItem != null)
-            //{
-            //    WhatWasWrongCombo.Items.Clear();
-            //    SQL_Service sqlService = new SQL_Service();
-            //    foreach (WhatWasWrong whatWasWrong in sqlService.RetrieveWhatWasWrong())
-            //    {
-            //        if (string.Equals(whatWasWrong.WhatDepartment, DepartmentCombo.SelectedItem.ToString()))
-            //        {
-            //            WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
-            //        }
-            //    }
-            //}
-
-            //Clear the whatwaswrong combo
-            WhatWasWrongCombo.Items.Clear();
-
-            //Dont run the function if the department combo is empty
-            if (DepartmentCombo.SelectedItem == null)
-            {
-                return;
-            }
-            else
-            {
-                RetrieveWhatWasWrong();
-
-                //fill the whatwaswrong combo with the values returned from the RetrieveWhatWasWrong function.
-                foreach (WhatWasWrong whatWasWrong in RetrieveWhatWasWrong())
-                {
-                    WhatWasWrongCombo.Items.Add(whatWasWrong.WhatCode);
-                }
-
             }
         }
         public List<WhatWasWrong> RetrieveWhatWasWrong()
@@ -423,11 +321,11 @@ namespace ReworkTracker
             WhatWasWrong whatWasWrong;
             string strSQLcall = string.Empty;
 
-            //Set SQL statement, add a where clause that checks the dep_cateogry for the department selected in the DepartmentCombo. 
+            //Set SQL statement, add a where clause that checks the dep_cateogry for the department selected in the ReportingAreaCombo.
             // Add the department that they selected at the end of the SQL statement.
             strSQLcall = "SELECT what_was_wrong.what_code FROM what_was_wrong INNER JOIN departments ON what_was_wrong.dep_category = departments.category where departments.Name = ";
-            //Add the department that they selected at the end of the SQL statement. Set that value to the department selected in the DepartmentCombo.
-            strSQLcall = strSQLcall + "'" + DepartmentCombo.SelectedItem.ToString() + "' and Facility = ";
+            //Add the department that they selected at the end of the SQL statement. Set that value to the department selected in the ReportingAreaCombo.
+            strSQLcall = strSQLcall + "'" + ReportingAreaCombo.SelectedItem.ToString() + "' and Facility = ";
             //If the WarsawRadioButton is checked, set the facility to Warsaw. If the CastileRadioButton is checked, set the facility to Castile.
             if (WarsawRadio.IsChecked == true)
             {
@@ -456,12 +354,11 @@ namespace ReworkTracker
             }
             catch (Exception ex)
             {
-               // logentry = "\n •Error retrieving WhatWasWrong from DB" + ex.Message + timestamp;
+                // logentry = "\n •Error retrieving WhatWasWrong from DB" + ex.Message + timestamp;
                 // System.IO.File.AppendAllText(logfilepath, logentry);
             }
             return objReturn;
         }
-
         private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //if employeerequired is visible, set it to hidden.
@@ -472,11 +369,6 @@ namespace ReworkTracker
         }
         private void txtDescription_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if descriptionrequired is visible set it to hidden
-            if (DescriptionRequired.Visibility == Visibility.Visible)
-            {
-                DescriptionRequired.Visibility = Visibility.Hidden;
-            }
         }
         private void txtDescriptionFixed_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -488,18 +380,16 @@ namespace ReworkTracker
         }
         private void WarsawRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            DepartmentCombo.Items.Clear();
-            WarsawDepartmentComboFill();
+            ReportingAreaCombo.Items.Clear();
+            ReportingAreaComboFill();
             HowWasItFixedCombo.Items.Clear();
-            
+
         }
         private void CastileRadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
-            DepartmentCombo.Items.Clear();
-            CastileDepartmentComboFill();
+            ReportingAreaCombo.Items.Clear();
+            ReportingAreaComboFill();
             HowWasItFixedCombo.Items.Clear();
         }
-
-
     }
 }

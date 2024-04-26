@@ -17,116 +17,116 @@ namespace ReworkTracker.Services
         /// Returns active employees from the employees table in the upstate_service database
         /// </summary>
         /// <returns> List<Employees> </returns>
-        public List<Employees> RetrieveActiveEmployees() 
-        {             
-            List<Employees> objReturn = new List<Employees>();
-            Employees employee;
-            string strSQLcall = string.Empty;
+        //public List<Employees> RetrieveActiveEmployees() 
+        //{             
+        //    List<Employees> objReturn = new List<Employees>();
+        //    Employees employee;
+        //    string strSQLcall = string.Empty;
 
-            //Set SQL statement
-            strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1 order by FirstName asc;";
+        //    //Set SQL statement
+        //    strSQLcall = "SELECT idEmployees, FirstName, LastName, Type FROM upstate_service.employees WHERE Active = 1 order by FirstName asc;";
 
-            try
-            {
-                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
-                {
-                    conn.Open();
-                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
-                    cmd.Connection = conn;
-                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
-                    while (odbcDataReader.Read())
-                    {
-                        employee = new Employees();
-                        employee.idEmployees = odbcDataReader.GetInt32(0);
-                        employee.FirstName = odbcDataReader.GetString(1);
-                        employee.LastName = odbcDataReader.GetString(2);
-                        employee.Type = odbcDataReader.GetString(3);
-                        objReturn.Add(employee);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                logentry = "\n •Error retrieving Employees from DB " + ex.Message + timestamp ;
-                System.IO.File.AppendAllText(logfilepath, logentry);
-            }
-            return objReturn;               
-        }
+        //    try
+        //    {
+        //        using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+        //        {
+        //            conn.Open();
+        //            OdbcCommand cmd = new OdbcCommand(strSQLcall);
+        //            cmd.Connection = conn;
+        //            using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+        //            while (odbcDataReader.Read())
+        //            {
+        //                employee = new Employees();
+        //                employee.idEmployees = odbcDataReader.GetInt32(0);
+        //                employee.FirstName = odbcDataReader.GetString(1);
+        //                employee.LastName = odbcDataReader.GetString(2);
+        //                employee.Type = odbcDataReader.GetString(3);
+        //                objReturn.Add(employee);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logentry = "\n •Error retrieving Employees from DB " + ex.Message + timestamp ;
+        //        System.IO.File.AppendAllText(logfilepath, logentry);
+        //    }
+        //    return objReturn;               
+        //}
         /// <summary>
         /// DS - 1/25/24
         /// Returns active departments from the departments table in the upstate_service database
         /// </summary>
         /// <returns> List<Departments> </returns>
-        public List<WarsawDepartments> RetrieveActiveWarsawDepartments()
-        {
-            List<WarsawDepartments> objReturn = new List<WarsawDepartments>();
-            WarsawDepartments department;
-            string strSQLcall = string.Empty;
+        //public List<WarsawDepartments> RetrieveActiveWarsawDepartments()
+        //{
+        //    List<WarsawDepartments> objReturn = new List<WarsawDepartments>();
+        //    WarsawDepartments department;
+        //    string strSQLcall = string.Empty;
 
-            //Set SQL statement
-            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1 and Facility = 'Warsaw';";
+        //    //Set SQL statement
+        //    strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1 and Facility = 'Warsaw';";
 
-            try
-            {
-                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
-                {
-                    conn.Open();
-                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
-                    cmd.Connection = conn;
-                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
-                    while (odbcDataReader.Read())
-                    {
-                        department = new WarsawDepartments();
-                        department.iddepartments = odbcDataReader.GetInt32(0);
-                        department.Name = odbcDataReader.GetString(1);
-                        department.Facility = odbcDataReader.GetString(2);
-                        department.type = odbcDataReader.GetString(3);
-                        objReturn.Add(department);
-                    }                    
-                }
-            }
-            catch (Exception ex)
-            {
-                logentry = "\n •Error retrieving Departments from DB" + ex.Message + timestamp;
-                System.IO.File.AppendAllText(logfilepath, logentry);
-            }
-            return objReturn;
-        }
-        public List<CastileDepartments> RetrieveActiveCastileDepartments()
-        {
-            List<CastileDepartments> objReturn = new List<CastileDepartments>();
-            CastileDepartments department;
-            string strSQLcall = string.Empty;
+        //    try
+        //    {
+        //        using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+        //        {
+        //            conn.Open();
+        //            OdbcCommand cmd = new OdbcCommand(strSQLcall);
+        //            cmd.Connection = conn;
+        //            using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+        //            while (odbcDataReader.Read())
+        //            {
+        //                department = new WarsawDepartments();
+        //                department.iddepartments = odbcDataReader.GetInt32(0);
+        //                department.Name = odbcDataReader.GetString(1);
+        //                department.Facility = odbcDataReader.GetString(2);
+        //                department.type = odbcDataReader.GetString(3);
+        //                objReturn.Add(department);
+        //            }                    
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logentry = "\n •Error retrieving Departments from DB" + ex.Message + timestamp;
+        //        System.IO.File.AppendAllText(logfilepath, logentry);
+        //    }
+        //    return objReturn;
+        //}
+        //public List<CastileDepartments> RetrieveActiveCastileDepartments()
+        //{
+        //    List<CastileDepartments> objReturn = new List<CastileDepartments>();
+        //    CastileDepartments department;
+        //    string strSQLcall = string.Empty;
 
-            //Set SQL statement
-            strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1 and Facility = 'Castile';";
+        //    //Set SQL statement
+        //    strSQLcall = "SELECT iddepartments, Name, Facility, type FROM upstate_service.departments WHERE Active = 1 and wastedb = 1 and Facility = 'Castile';";
 
-            try
-            {
-                using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
-                {
-                    conn.Open();
-                    OdbcCommand cmd = new OdbcCommand(strSQLcall);
-                    cmd.Connection = conn;
-                    using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
-                    while (odbcDataReader.Read())
-                    {
-                        department = new CastileDepartments();
-                        department.iddepartments = odbcDataReader.GetInt32(0);
-                        department.Name = odbcDataReader.GetString(1);
-                        department.Facility = odbcDataReader.GetString(2);
-                        department.type = odbcDataReader.GetString(3);
-                        objReturn.Add(department);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                logentry = "\n •Error retrieving Departments from DB" + ex.Message + timestamp;
-                System.IO.File.AppendAllText(logfilepath, logentry);
-            }
-            return objReturn;
-        }
+        //    try
+        //    {
+        //        using (OdbcConnection conn = new OdbcConnection(ConfigurationManager.AppSettings.Get("WasteConnectionString")))
+        //        {
+        //            conn.Open();
+        //            OdbcCommand cmd = new OdbcCommand(strSQLcall);
+        //            cmd.Connection = conn;
+        //            using OdbcDataReader odbcDataReader = cmd.ExecuteReader();
+        //            while (odbcDataReader.Read())
+        //            {
+        //                department = new CastileDepartments();
+        //                department.iddepartments = odbcDataReader.GetInt32(0);
+        //                department.Name = odbcDataReader.GetString(1);
+        //                department.Facility = odbcDataReader.GetString(2);
+        //                department.type = odbcDataReader.GetString(3);
+        //                objReturn.Add(department);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logentry = "\n •Error retrieving Departments from DB" + ex.Message + timestamp;
+        //        System.IO.File.AppendAllText(logfilepath, logentry);
+        //    }
+        //    return objReturn;
+        //}
         /// <summary>
         /// DS - 1/25/24
         /// Returns active defect codes from the defect_codes table in the upstate_service database
